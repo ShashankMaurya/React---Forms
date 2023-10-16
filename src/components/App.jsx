@@ -23,6 +23,9 @@ function App() {
   }
 
   function handleChange(event) {
+
+    const { name, value } = event.target;
+
     // console.log(event.target.classList.value);
 
     // if (event.target.name === 'firstName') {
@@ -33,16 +36,16 @@ function App() {
     // }
 
     setName((prevValue) => {
-      if (event.target.name === 'firstName') {
+      if (name === 'firstName') {
         return ({
-          fname: event.target.value,
+          fname: value,
           lname: prevValue.lname
         });
       }
       else {
         return ({
           fname: prevValue.fname,
-          lname: event.target.value
+          lname: value
         });
       }
     });
@@ -57,14 +60,14 @@ function App() {
         onChange={handleChange}
         type="text"
         placeholder="First name"
-      // value={name.fname}
+        value={name.fname}
       />
       <input
         name="lastName"
         onChange={handleChange}
         type="text"
         placeholder="Last name"
-      // value={name.lname}
+        value={name.lname}
       />
       <button
         style={{ backgroundColor: mouseOver ? "black" : "white" }}
