@@ -36,29 +36,31 @@ function App() {
     //   setName({lname: event.target.value});
     // }
 
-    setContact((prevValue) => {
-      if (name === 'firstName') {
-        return ({
-          fname: value,
-          lname: prevValue.lname,
-          email: prevValue.email
-        });
-      }
-      else if (name === 'lastName') {
-        return ({
-          fname: prevValue.fname,
-          lname: value,
-          email: prevValue.email
-        });
-      }
-      else if (name === 'email') {
-        return ({
-          fname: prevValue.fname,
-          lname: prevValue.lname,
-          email: value
-        });
-      }
-    });
+    setContact((prevValue) => ({ ...prevValue, [name]: value }));
+
+    // {
+    // if (name === 'firstName') {
+    //   return ({
+    //     fname: value,
+    //     lname: prevValue.lname,
+    //     email: prevValue.email
+    //   });
+    // }
+    // else if (name === 'lastName') {
+    //   return ({
+    //     fname: prevValue.fname,
+    //     lname: value,
+    //     email: prevValue.email
+    //   });
+    // }
+    // else if (name === 'email') {
+    //   return ({
+    //     fname: prevValue.fname,
+    //     lname: prevValue.lname,
+    //     email: value
+    //   });
+    // }
+    // });
 
   }
 
@@ -67,14 +69,14 @@ function App() {
       <h1>Hello {contact.fname} {contact.lname}</h1>
       <p>{contact.email}</p>
       <input
-        name="firstName"
+        name="fname"
         onChange={handleChange}
         type="text"
         placeholder="First name"
         value={contact.fname}
       />
       <input
-        name="lastName"
+        name="lname"
         onChange={handleChange}
         type="text"
         placeholder="Last name"
