@@ -4,8 +4,11 @@ function App() {
 
   // const [headingText, setHeadingText] = useState("");
   const [mouseOver, setMouseOver] = useState(false);
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
+  const [name, setName] = useState({
+    fname: "",
+    lname: ""
+  });
+  // const [lname, setLname] = useState("");
 
   // function handleClick() {
   //   setHeadingText("Submitted");
@@ -21,30 +24,48 @@ function App() {
 
   function handleChange(event) {
     // console.log(event.target.classList.value);
-    if (event.target.classList.value === 'firstName') {
-      setFname(event.target.value);
-    }
-    else {
-      setLname(event.target.value);
-    }
+
+    // if (event.target.name === 'firstName') {
+    //   setName({fname: event.target.value});
+    // }
+    // else {
+    //   setName({lname: event.target.value});
+    // }
+
+    setName((prevValue) => {
+      if (event.target.name === 'firstName') {
+        return ({
+          fname: event.target.value,
+          lname: prevValue.lname
+        });
+      }
+      else {
+        return ({
+          fname: prevValue.fname,
+          lname: event.target.value
+        });
+      }
+    });
 
   }
 
   return (
     <div className="container">
-      <h1>Hello {fname + ' ' + lname}</h1>
+      <h1>Hello {name.fname + ' ' + name.lname}</h1>
       <input
-        className="firstName"
+        name="firstName"
         onChange={handleChange}
         type="text"
         placeholder="First name"
-        value={fname} />
+      // value={name.fname}
+      />
       <input
-        className="lastName"
+        name="lastName"
         onChange={handleChange}
         type="text"
         placeholder="Last name"
-        value={lname} />
+      // value={name.lname}
+      />
       <button
         style={{ backgroundColor: mouseOver ? "black" : "white" }}
         // onClick={handleClick}
